@@ -2,23 +2,23 @@ pipeline{
     agent any
     stages{
         stage('pull'){
-            step{
+            steps{
             git branch: 'Dev', url: 'https://github.com/Ayushshaha1008/ginger-frontend.git'
             }
         }
         stage('Install-packages'){
-            step{
+            steps{
                 sh 'npm install'
             }
         }
         stage('Build'){
-            step{
+            steps{
                 sh 'npm run build'
             }
         }
         stage('Deploy'){
-            step{
-                sh 'aws s3 sync dist/ s3://ginger'
+            steps{
+                sh 'aws s3 sync dist/ s3://ginger-frontend-buzz'
             }
         }
     }
